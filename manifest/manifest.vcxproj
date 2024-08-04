@@ -24,16 +24,20 @@
     <ClInclude Include="headers\driver.h" />
     <ClInclude Include="headers\entity.h" />
     <ClInclude Include="headers\entitylist.h" />
+    <ClInclude Include="headers\esp.h" />
     <ClInclude Include="headers\etc_elements.h" />
     <ClInclude Include="headers\includes.h" />
     <ClInclude Include="headers\map.h" />
     <ClInclude Include="headers\nav_elements.h" />
     <ClInclude Include="headers\offsets.h" />
     <ClInclude Include="headers\overlay.h" />
+    <ClInclude Include="headers\render.h" />
     <ClInclude Include="headers\shellcode.h" />
     <ClInclude Include="headers\skCrypt.h" />
     <ClInclude Include="headers\structs.h" />
     <ClInclude Include="headers\util.h" />
+    <ClInclude Include="headers\vector.h" />
+    <ClInclude Include="headers\w2s.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />
     <ClInclude Include="imgui\imgui_impl_dx11.h" />
@@ -45,8 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="config.cpp" />
+    <ClCompile Include="entity.cpp" />
     <ClCompile Include="entitylist.cpp" />
+    <ClCompile Include="esp.cpp" />
     <ClCompile Include="etc_elements.cpp" />
+    <ClCompile Include="headers\render.hpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
@@ -54,12 +61,17 @@
     <ClCompile Include="imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="includes.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="nav_elements.cpp" />
+    <ClCompile Include="offsets.cpp" />
     <ClCompile Include="overlay.cpp" />
+    <ClCompile Include="render.cpp" />
     <ClCompile Include="structs.cpp" />
     <ClCompile Include="util.cpp" />
+    <ClCompile Include="vector.cpp" />
+    <ClCompile Include="w2s.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

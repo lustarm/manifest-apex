@@ -11,6 +11,7 @@
 #include "imgui/imgui_internal.h"
 
 #include "headers/skCrypt.h"
+#include "headers/structs.h"
 
 #pragma comment(lib, "d3d11.lib")
 
@@ -37,3 +38,6 @@ void CleanupDeviceD3D();
 void CreateRenderTarget();
 bool CreateDeviceD3D(HWND hWnd);
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
+float MeterToGameUnits(float);
+float GameUnitsToMeter(float);

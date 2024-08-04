@@ -1,4 +1,6 @@
 #include "headers/util.h"
+#include "headers/structs.h"
+#include "headers/vector.h"
 
 std::string random_string_window()
 {
@@ -111,3 +113,11 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     }
     return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }
+
+float MeterToGameUnits(float Meters) {
+	return (float)(39.37007874 * Meters);
+}
+float GameUnitsToMeter(float GameUnits) {
+	return  (float)(GameUnits/39.37007874);
+}
+

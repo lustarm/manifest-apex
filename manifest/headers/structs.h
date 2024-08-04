@@ -4,6 +4,11 @@
 #include <algorithm>
 #include <cstddef>
 
+struct Vec3
+{
+    float X, Y, Z;
+};
+
 enum class HitboxType {
     Head = 0,
     Neck = 1,
@@ -13,6 +18,18 @@ enum class HitboxType {
     Hip = 5
 };
 
+struct MatrixArray {
+    float matrix[16];
+};
+
+struct Matrix3x4 {
+    float matrix[3][4];
+
+    Vec3 GetPosition();
+    Vec3 GetPosition2();
+};
+
+/*
 struct Color {
     float red;
     float green;
@@ -21,6 +38,7 @@ struct Color {
     bool operator==(const Color& other) const;
     bool operator!=(const Color& other) const;
 };
+
 
 struct GlowMode {
     std::byte bodyStyle, borderStyle, borderWidth, transparency;
@@ -37,10 +55,6 @@ struct GlowMode {
 
 struct Vector3 {
     float x, y, z;
-};
-
-struct Matrix {
-    float matrix[16];
 };
 
 struct Vec3 {
@@ -104,10 +118,4 @@ struct QAngle {
     static QAngle zero();
 };
 
-struct Matrix3x4 {
-public:
-    float matrix[3][4];
-
-    Vec3 GetPosition() const;
-    Vec3 GetPosition2() const;
-};
+*/

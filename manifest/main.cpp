@@ -1,6 +1,7 @@
 #include "headers/driver.h"
 #include "headers/map.h"
 #include "headers/overlay.h"
+#include "headers/entity.h"
 
 int main()
 {
@@ -32,7 +33,7 @@ int main()
 
 	std::cout << "[(*)] Found apex legends launching manifest" << std::endl;
 	/* == Main logic for cheat == */
-	// _beginthread((_beginthread_proc_type)mainthread, 0, 0);
+	_beginthread((_beginthread_proc_type)entitythread, 0, 0);
 	_beginthread((_beginthread_proc_type)overlaythread, 0, 0);
 	Sleep(-1);
 	return 0;

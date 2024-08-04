@@ -7,6 +7,7 @@
 #include "headers/etc_elements.h"
 #include "headers/nav_elements.h"
 #include "headers/config.h"
+#include "headers/esp.h"
 
 //namespace fonts
 ImFont* medium;
@@ -279,6 +280,7 @@ void overlaythread()
             ImGui::End();
             ImGui::PopStyleVar();
         }
+        esp();
         ImGui::EndFrame();
         ImGui::Render();
 
