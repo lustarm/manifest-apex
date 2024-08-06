@@ -139,7 +139,7 @@ void overlaythread()
 		if (GetAsyncKeyState(VK_INSERT)) {
 			Menu = !Menu;
 			//ImGui::GetIO().MouseDrawCursor = Config::Menu;
-			Sleep(250);
+            Sleep(250);
 		}
 
 		if (!Menu && !test) {
@@ -152,11 +152,6 @@ void overlaythread()
 			SetFocus(hwnd);
 			ShowCursor(TRUE);
 			SetWindowLong(hwnd, GWL_EXSTYLE, WS_EX_LAYERED | WS_EX_TOOLWINDOW);
-			//UpdateWindow(hwnd);
-			//Config::doingentity = 0;
-			//Sleep(100);
-			//Config::doingentity = 1;
-			//_beginthread((_beginthread_proc_type)entity_thread, 0, 0);
 			test = false;
 		}
 
@@ -170,7 +165,7 @@ void overlaythread()
             static sub_heads subtab{ general };
 
             const char* tab_name = tab == aimbot ? "Aimbot" : tab == visuals ? "Visuals" : tab == settings ? "Settings" : 0;
-            const char* tab_icon = tab == aimbot ? "B" : tab == visuals ? "D"  : tab == settings ? "E" : 0;
+            const char* tab_icon = tab == aimbot ? "A" : tab == visuals ? "D"  : tab == settings ? "E" : 0;
 
             static bool boolean, boolean_1 = false;
             static int sliderscalar, combo = 0;
@@ -211,7 +206,7 @@ void overlaythread()
                 ImGui::SetCursorPos({ 8, 56 });
                 ImGui::BeginGroup(); 
                 {
-                    if (elements::tab("B", tab == aimbot)) { tab = aimbot; }
+                    if (elements::tab("A", tab == aimbot)) { tab = aimbot; }
                     if (elements::tab("D", tab == visuals)) { tab = visuals; }
                     if (elements::tab("E", tab == settings)) { tab = settings; }
                 } ImGui::EndGroup();
@@ -234,11 +229,54 @@ void overlaythread()
                         ImGui::SetCursorPos({ 226, 16 });
                         e_elements::begin_child("Aimbot", ImVec2(490, 300)); {
                             ImGui::Checkbox("Enabled", &config::aimbot_enabled);
-                            ImGui::Checkbox("Silent aim", &boolean_1);
+                            ImGui::Checkbox("Target Teamates", &config::TargetTeamates);
 
-                            ImGui::SliderInt("Aimbot Smoothing", &config::aim_smoothing, 0, 100, "%d%%", ImGuiSliderFlags_None);
+                            ImGui::SliderFloat("Aimbot Smoothing", &config::SmoothAmount, 10.0f, 100.0f, "%.0f%%", ImGuiSliderFlags_None);
+
+                            switch (config::aim_key)
+                            {
+                            case VK_LBUTTON:
+                                aim_key_combo = 0;
+                                break;
+                            case VK_RBUTTON:
+                                aim_key_combo = 1;
+                                break;
+                            case VK_MBUTTON:
+                                aim_key_combo = 2;
+                                break;
+                            case VK_XBUTTON1:
+                                aim_key_combo = 3;
+                                break;
+                            case VK_XBUTTON2:
+                                aim_key_combo = 4;
+                                break;
+                            default:
+                                aim_key_combo = 4;
+                                break;
+                            }
 
                             ImGui::Combo("Aim Key", &aim_key_combo, aim_key_type, IM_ARRAYSIZE(aim_key_type));
+                            switch (aim_key_combo)
+                            {
+                            case 0:
+                                config::aim_key = VK_LBUTTON;
+                                break;
+                            case 1:
+                                config::aim_key = VK_RBUTTON;
+                                break;
+                            case 2:
+                                config::aim_key = VK_MBUTTON;
+                                break;
+                            case 3:
+                                config::aim_key = VK_XBUTTON1;
+                                break;
+                            case 4:
+                                config::aim_key = VK_XBUTTON2;
+                                break;
+                            default:
+                                config::aim_key = VK_XBUTTON2;
+                                break;
+                            }
                         }
                         e_elements::end_child();
                         break;
@@ -249,7 +287,7 @@ void overlaythread()
                             ImGui::Checkbox("Show FOV", &config::show_fov);
                             // ImGui::Checkbox("Toggle 1", &boolean_1);
 
-                            ImGui::SliderInt("FOV", &config::fov, 0, 180, "%d", ImGuiSliderFlags_None);
+                            ImGui::SliderInt("FOV", &config::fov, 0, 1000, "%d", ImGuiSliderFlags_None);
 
                             // ImGui::Combo("Combobox", &combo, combo_items, IM_ARRAYSIZE(combo_items));
                         }
@@ -257,13 +295,17 @@ void overlaythread()
 
                         ImGui::SetCursorPos({ 476, 16 });
                         e_elements::begin_child("the river", ImVec2(240, 240)); {
+                            ImGui::Checkbox("No Recoil", &config::NoRecoil);
 
+                            // ImGui::SliderFloat("Recoil Control X", &config::RecoilNumX, 0.0f, 100.0f, "%.2f%%", ImGuiSliderFlags_None);
+                            ImGui::SliderFloat("Recoil Control Amount", &config::RecoilNumY, 0.0f, 100.0f, "%.0f%%", ImGuiSliderFlags_None);
+                            config::RecoilNumX = config::RecoilNumY;
                         }
                         e_elements::end_child();
 
                         ImGui::SetCursorPos({ 226, 332 });
                         e_elements::begin_child("water in", ImVec2(240, 114)); {
-
+                            ImGui::Checkbox("Prediction", &config::Prediction);
                         }
                         e_elements::end_child();
 
@@ -275,6 +317,10 @@ void overlaythread()
                         break;
                     }
                     break;
+                    /*
+                case visuals:
+                    break;
+                    */
                 }
             }
             ImGui::End();

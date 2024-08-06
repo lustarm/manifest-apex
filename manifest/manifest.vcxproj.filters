@@ -96,6 +96,15 @@
     <ClInclude Include="headers\render.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="headers\aimbot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\target.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\render.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -149,9 +158,6 @@
     <ClCompile Include="entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="headers\render.hpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="esp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -168,6 +174,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="render.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aimbot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="target.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

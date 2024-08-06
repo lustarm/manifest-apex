@@ -34,19 +34,21 @@ public:
 	bool Visible = false;
 
 	// WTF???
-	float AimX = 9999;
-	float AimY = 9999;
+	float AimX = 0.0f;
+	float AimY = 0.0f;
 
 	uintptr_t WeaponEntity = 0;
 	int WeaponIndex = 0;
 	float WeaponProjectileSpeed = 0.0f;
 	float WeaponProjectileScale = 0.0f;
 
+	bool Prediction = false;
+
 	bool AimedAt = false;
 	bool ZoomedIn = false;
 
-	bool IsTarget(float) const;
-	bool IsVisible(float) const;
+	bool IsTarget() const;
+	bool IsVisible() const;
 	bool CombatReady();
 
 	int GetBoneFromHitbox(HitboxType hitbox);
@@ -54,5 +56,6 @@ public:
 	// OW::Vector3 GetBonePositionVector3(HitboxType hitbox);
 };
 
+DWORD64 GetEntityById(int Ent, DWORD64 Base);
 OW::Vector3 GetEntityBasePosition(uintptr_t);
 void entitythread(void);

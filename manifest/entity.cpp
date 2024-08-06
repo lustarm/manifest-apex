@@ -7,7 +7,7 @@ int realspeccount = 0;
 DWORD timecountnow = 0;
 int timetocountspeczero = 1500;
 
-static DWORD64 GetEntityById(int Ent, DWORD64 Base)
+DWORD64 GetEntityById(int Ent, DWORD64 Base)
 {
 	DWORD64 EntityList = Base + OFF_ENTITY_LIST; //updated
 	DWORD64 BaseEntity = read<DWORD64>(EntityList);
@@ -39,17 +39,17 @@ OW::Vector3 GetEntityBasePosition(uintptr_t ent)
 	return read<OW::Vector3>(ent + OFF_LOCAL_ORIGIN);
 }
 
-bool CEntity::IsTarget(float world_time) const
+bool CEntity::IsTarget() const
 {
-	float Time1;
-	Time1 = read<float>(this->address + OFF_LAST_AIMEDAT_TIME);
+	float world_time = read<float>(this->address + OFF_TIME_BASE);
+	float Time1 = read<float>(this->address + OFF_LAST_AIMEDAT_TIME);
 	return (Time1 + 0.2) >= world_time;
 }
 
-bool CEntity::IsVisible(float world_time) const
+bool CEntity::IsVisible() const
 {
-	float Time1;
-	Time1 = read<float>(this->address + OFF_LAST_VISIBLE_TIME);
+	float world_time = read<float>(this->address + OFF_TIME_BASE);
+	float Time1 = read<float>(this->address + OFF_LAST_VISIBLE_TIME);
 	return (Time1 + 0.2) >= world_time;
 }
 

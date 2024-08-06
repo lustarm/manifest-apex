@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\aimbot.h" />
     <ClInclude Include="headers\byte_array.h" />
     <ClInclude Include="headers\config.h" />
     <ClInclude Include="headers\driver.h" />
@@ -32,9 +33,11 @@
     <ClInclude Include="headers\offsets.h" />
     <ClInclude Include="headers\overlay.h" />
     <ClInclude Include="headers\render.h" />
+    <ClInclude Include="headers\render.hpp" />
     <ClInclude Include="headers\shellcode.h" />
     <ClInclude Include="headers\skCrypt.h" />
     <ClInclude Include="headers\structs.h" />
+    <ClInclude Include="headers\target.h" />
     <ClInclude Include="headers\util.h" />
     <ClInclude Include="headers\vector.h" />
     <ClInclude Include="headers\w2s.h" />
@@ -48,12 +51,12 @@
     <ClInclude Include="imgui\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="aimbot.cpp" />
     <ClCompile Include="config.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="entitylist.cpp" />
     <ClCompile Include="esp.cpp" />
     <ClCompile Include="etc_elements.cpp" />
-    <ClCompile Include="headers\render.hpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
@@ -69,6 +72,7 @@
     <ClCompile Include="overlay.cpp" />
     <ClCompile Include="render.cpp" />
     <ClCompile Include="structs.cpp" />
+    <ClCompile Include="target.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="vector.cpp" />
     <ClCompile Include="w2s.cpp" />

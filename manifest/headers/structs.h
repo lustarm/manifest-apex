@@ -87,35 +87,128 @@ struct Vec2 {
     bool operator<=(const float _t);
     bool operator!=(const float _t);
 };
-
+*/
 struct QAngle {
-    float x;
-    float y;
 
-    QAngle();
-    QAngle(float x, float y);
+	float x;
+	float y;
 
-    QAngle operator+(const QAngle& other) const;
-    QAngle operator-(const QAngle& other) const;
-    QAngle operator*(const float scalar) const;
-    QAngle operator/(const float scalar) const;
-    QAngle& operator+=(const QAngle& other);
-    QAngle& operator-=(const QAngle& other);
-    QAngle& operator*=(const float scalar);
-    QAngle& operator/=(const float scalar);
-    bool operator==(const QAngle& other) const;
-    bool operator!=(const QAngle& other) const;
+	QAngle() : x(0), y(0) {}
 
-    float dot(const QAngle& other) const;
-    float length() const;
-    float distanceTo(const QAngle& other) const;
-    QAngle& normalize();
-    QAngle& clamp(float minVal, float maxVal);
-    QAngle lerp(const QAngle& other, float t) const;
-    QAngle& fixAngle();
-    bool isValid() const;
+	QAngle(float x, float y) : x(x), y(y) {}
 
-    static QAngle zero();
+	inline QAngle operator+(const QAngle& other) const {
+		return QAngle(x + other.x, y + other.y);
+	}
+
+	inline QAngle operator-(const QAngle& other) const {
+		return QAngle(x - other.x, y - other.y);
+	}
+
+	inline QAngle operator*(const float scalar) const {
+		return QAngle(x * scalar, y * scalar);
+	}
+
+	inline QAngle operator/(const float scalar) const {
+		return QAngle(x / scalar, y / scalar);
+	}
+
+	inline QAngle& operator+=(const QAngle& other) {
+		x += other.x;
+		y += other.y;
+		return *this;
+	}
+
+	inline QAngle& operator-=(const QAngle& other) {
+		x -= other.x;
+		y -= other.y;
+		return *this;
+	}
+
+	inline QAngle& operator*=(const float scalar) {
+		x *= scalar;
+		y *= scalar;
+		return *this;
+	}
+
+	inline QAngle& operator/=(const float scalar) {
+		x /= scalar;
+		y /= scalar;
+		return *this;
+	}
+
+	inline bool operator==(const QAngle& other) const
+	{
+		return x == other.x && y == other.y;
+	}
+
+	inline bool operator!=(const QAngle& other) const
+	{
+		return !(*this == other);
+	}
+
+	inline float dot(const QAngle& other) const {
+		return x * other.x + y * other.y;
+	}
+
+	inline float length() const {
+		return std::sqrt(x * x + y * y);
+	}
+
+	float distanceTo(const QAngle& other) const {
+		return (other - *this).length();
+	};
+
+	inline QAngle& normalize() {
+		float len = length();
+		if (len > 0) {
+			x /= len;
+			y /= len;
+		}
+		return *this;
+	}
+
+	inline QAngle& clamp(float minVal, float maxVal) {
+		x = std::clamp(x, minVal, maxVal);
+		y = std::clamp(y, minVal, maxVal);
+
+		return *this;
+	}
+
+	inline QAngle lerp(const QAngle& other, float t) const {
+		return (*this) * (1.0f - t) + other * t;
+	}
+
+	inline QAngle& fixAngle() {
+		if (!isValid()) {
+			return *this;
+		}
+
+		while (y > 89.0f)
+			y -= 180.f;
+
+		while (y < -89.0f)
+			y += 180.f;
+
+		while (x > 180.f)
+			x -= 360.f;
+
+		while (x < -180.f)
+			x += 360.f;
+
+		return *this;
+	}
+
+	inline bool isValid() const {
+		if (std::isnan(x) || std::isinf(x) || std::isnan(y) || std::isinf(y)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	inline static QAngle zero() {
+		return QAngle(0, 0);
+	}
 };
 
-*/

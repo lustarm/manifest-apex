@@ -1,11 +1,3 @@
-#pragma once
-#include <Windows.h>
-#include <string>
-
-#include "imgui/imgui.h"
-
-#include "headers/vector.h"
-
 namespace OW {
 	namespace Render {
         inline void DrawQuadFilled(ImVec2 p1, ImVec2 p2, ImVec2 p3, ImVec2 p4, ImColor color) {
@@ -309,8 +301,7 @@ namespace OW {
 				}
 			}
 		}
-
-		inline std::string string_To_UTF8(const std::string& str) {
+		std::string string_To_UTF8(const std::string& str) {
 			int nwLen = ::MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, NULL, 0);
 			wchar_t* pwBuf = new wchar_t[nwLen + 1];
 			ZeroMemory(pwBuf, nwLen * 2 + 2);
@@ -439,7 +430,7 @@ namespace OW {
 		}
 
 
-		inline void DrawLine(Vector2 From, Vector2 To, Color color, int thickness) {
+		void DrawLine(Vector2 From, Vector2 To, Color color, int thickness) {
 			int x1 = From.X;
 			int y1 = From.Y;
 			int x2 = To.X;
@@ -447,7 +438,7 @@ namespace OW {
 
 			ImGui::GetForegroundDrawList()->AddLine(ImVec2(x1, y1), ImVec2(x2, y2), ImGui::ColorConvertFloat4ToU32(ImVec4(color.R / 255.0, color.G / 255.0, color.B / 255.0, color.A / 255.0)), thickness);
 		}
-		inline void DrawBox(Rect rect, Color color, float thickness) {
+		void DrawBox(Rect rect, Color color, float thickness) {
 			Vector2 v1 = Vector2(rect.x, rect.y);
 			Vector2 v2 = Vector2(rect.x + rect.width, rect.y);
 			Vector2 v3 = Vector2(rect.x + rect.width, rect.y + rect.height);
@@ -459,7 +450,7 @@ namespace OW {
 			DrawLine(v4, v1, color, thickness);
 
 		}
-		inline void DrawHealthBar(Vector2 screenPos, float height, float currentHealth, float maxHealth,int MaxShield,int nowshield) {
+		void DrawHealthBar(Vector2 screenPos, float height, float currentHealth, float maxHealth,int MaxShield,int nowshield) {
 			screenPos.X += 8;
 			DrawBox(Rect(screenPos.X, screenPos.Y, 5.0f, height + 2), Color(0, 0, 0), 3);
 			screenPos.X += 1;
@@ -489,7 +480,7 @@ namespace OW {
 			}
 			DrawBox(Rect(screenPos.X, screenPos.Y, 3.0f, barHeight), HealthColor, 3);
 		}
-		inline void DrawString(Vector2 Position, Color color, const char* str) {
+		void DrawString(Vector2 Position, Color color, const char* str) {
 			int x = Position.X;
 			int y = Position.Y;
 			ImFont a;
