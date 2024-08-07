@@ -118,6 +118,8 @@ void entitythread()
 		}
 
 		Entities = tmpentities;
-		Sleep(10);
+		// Check every 1.5 seconds
+		// have to make this better proformence
+		Sleep(1500);
 	}
 }
